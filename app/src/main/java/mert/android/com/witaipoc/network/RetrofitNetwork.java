@@ -14,13 +14,14 @@ public class RetrofitNetwork {
     public static final String BASE_URL = "https://api.wit.ai/";
     public static WitAPI client;
     public static Retrofit retrofit;
+    public static final String AUTH_TOKEN = "Bearer 7PCGMCROF3A4W7RNXFO64SKTHVMYAKNR";
     public RetrofitNetwork(){
-            Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(new GsonConverterFactory);
+            Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create());
             retrofit = retrofitBuilder.build();
             client = retrofit.create(WitAPI.class);
     }
-    public Call<WitResponse> makeQuery(String queryText){
-            return client.makequery(queryText);
+    public static Call<WitResponse> makeQuery(String value, String queryText){
+            return client.makequery(AUTH_TOKEN,value,queryText);
     }
 
 }

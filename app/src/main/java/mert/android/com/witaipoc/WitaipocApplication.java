@@ -10,9 +10,11 @@ import mert.android.com.witaipoc.network.RetrofitNetwork;
  * All rights reserved.
  */
 public class WitaipocApplication extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
         RetrofitNetwork retrofitNetwork = new RetrofitNetwork();
     }
+
 }

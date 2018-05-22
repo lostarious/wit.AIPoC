@@ -3,6 +3,7 @@ package mert.android.com.witaipoc.network;
 import mert.android.com.witaipoc.responsedata.WitResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 /**
@@ -12,7 +13,10 @@ import retrofit2.http.Query;
  */
 public interface WitAPI {
 
-    @GET("message?v=20180521")
+    @GET("message")
     Call<WitResponse> makequery(
-            @Query("q") String queryText);
+            @Header("Authorization") String auth,
+            @Query("v") String value ,
+            @Query("q") String queryText
+        );
 }
