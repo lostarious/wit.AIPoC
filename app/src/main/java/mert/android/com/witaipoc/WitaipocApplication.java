@@ -1,7 +1,15 @@
 package mert.android.com.witaipoc;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Application;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 
+import java.io.IOException;
+
+import mert.android.com.witaipoc.audio.AudioRecorder;
+import mert.android.com.witaipoc.home.MainActivity;
 import mert.android.com.witaipoc.network.RetrofitNetwork;
 
 /**
@@ -15,6 +23,8 @@ public class WitaipocApplication extends Application {
     public void onCreate() {
         super.onCreate();
         RetrofitNetwork retrofitNetwork = new RetrofitNetwork();
+
+
     }
 
 }

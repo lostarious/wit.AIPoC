@@ -15,4 +15,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/bt_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RECORD"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="310dp" />
+
 </android.support.constraint.ConstraintLayout>
