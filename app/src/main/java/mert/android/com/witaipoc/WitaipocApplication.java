@@ -8,7 +8,6 @@ import android.support.v4.app.ActivityCompat;
 
 import java.io.IOException;
 
-import mert.android.com.witaipoc.audio.AudioRecorder;
 import mert.android.com.witaipoc.home.MainActivity;
 import mert.android.com.witaipoc.network.RetrofitNetwork;
 

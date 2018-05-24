@@ -2,17 +2,22 @@ package mert.android.com.witaipoc.home;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.speech.RecognizerIntent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Locale;
 
 import mert.android.com.witaipoc.R;
-import mert.android.com.witaipoc.audio.AudioRecorder;
 import mert.android.com.witaipoc.network.RetrofitNetwork;
 import mert.android.com.witaipoc.responsedata.ow.OWResponse;
 import mert.android.com.witaipoc.responsedata.wit.WitResponse;
@@ -24,8 +29,7 @@ import static java.lang.Thread.sleep;
 
 public class MainActivity extends AppCompatActivity {
     Button mRecordButton;
-    boolean currentlyRecording = false;
-    AudioRecorder audioRecorder;
+    private static final int RESULT_SPEECH =10;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,26 +66,38 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
                 }
-                if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},2);
-                }
-                //Oynatıyorsa durdur , yoksa başlat
-                if(!currentlyRecording) {
-                    try {
-                        audioRecorder = new AudioRecorder();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    audioRecorder.startRecording();
-                    currentlyRecording = true;
-                    }
-                else{
-                   audioRecorder.stopRecording();
-                   currentlyRecording=false;
-                }
-                }
+                    final Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, Locale.getDefault());
+                            try {
+
+                                startActivityForResult(intent, RESULT_SPEECH);
+                            } catch (ActivityNotFoundException a) {
+
+                                Toast.makeText(getApplicationContext(),
+
+                                        "Opps! Your device doesn’t support Speech to Text",Toast.LENGTH_SHORT).show();
+                            }
+
+                            //The RecognizerIntent will convert the speech input to text and send back the result as ArrayList with key RecognizerIntent.EXTRA_RESULTS
+                        }
+
+
+
         });
 
 
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case RESULT_SPEECH: {
+                if (resultCode == RESULT_OK && null != data) {
+                    ArrayList<String> text = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    System.out.println(text.get(0));
+                }break;
+            }
+        }
     }
 }
