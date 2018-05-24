@@ -9,6 +9,7 @@ import android.speech.RecognizerIntent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -30,34 +31,14 @@ import static java.lang.Thread.sleep;
 public class MainActivity extends AppCompatActivity {
     Button mRecordButton;
     private static final int RESULT_SPEECH =10;
+    private static final String E_LOG_TAG = "SORUN";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mRecordButton = findViewById(R.id.bt_record);
-        RetrofitNetwork.makeQuery("20180521","Trabzonda hava perşembe günü nasıl?").enqueue(new Callback<WitResponse>() {
-            @Override
-            public void onResponse(Call<WitResponse> call, Response<WitResponse> response) {
-                System.out.println("SUCCES");
 
-            }
 
-            @Override
-            public void onFailure(Call<WitResponse> call, Throwable t) {
-
-            }
-        });
-        RetrofitNetwork.request5DayForecast("Trabzon").enqueue(new Callback<OWResponse>() {
-            @Override
-            public void onResponse(Call<OWResponse> call, Response<OWResponse> response) {
-                System.out.println("SUCCES");
-            }
-
-            @Override
-            public void onFailure(Call<OWResponse> call, Throwable t) {
-
-            }
-        });
 
         mRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +76,56 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> text = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    System.out.println(text.get(0));
+                    RetrofitNetwork.makeQuery("20180521",text.get(0)).enqueue(new Callback<WitResponse>() {
+                        @Override
+                        public void onResponse(Call<WitResponse> call, Response<WitResponse> response) {
+                            //TODO:Yer bilgisi bulunamadığında veya sağlanmadığında otomatik almasını sağlamıyor şuan
+                            if(response.body().getEntities()!=null) {
+                                if(response.body().getEntities().getHavaDurumu()!=null)
+                                System.out.println("WitAPI - Intent: " + response.body().getEntities().getHavaDurumu().get(0).getValue());
+                                String city="NAN";
+
+                                if(response.body().getEntities().getLocation()!=null) {
+                                    System.out.println("WitAPI - Location: " + response.body().getEntities().getLocation().get(0).getValue());
+                                    String location;
+                                    location = response.body().getEntities().getLocation().get(0).getValue();
+                                    if (location.contains("'")) {
+                                        city = response.body().getEntities().getLocation().get(0).getValue().substring(0, location.length() - 3);
+                                    } else {
+                                        city = location;
+                                    }
+                                }
+                                if(response.body().getEntities().getTime()!=null)
+                                    System.out.println("WitAPI - Time: " + response.body().getEntities().getTime().get(0).getValue());
+                                if(city.equals("NAN")) {
+                                    Log.i(E_LOG_TAG, "Bir yer bilgisi bulunamadı!");
+                                }else {
+                                    //TODO:İstenen tarihteki hava durumunu vermiyor şuan listenin en başındakini veriyor.
+                                        RetrofitNetwork.request5DayForecast(city).enqueue(new Callback<OWResponse>() {
+                                        @Override
+                                        public void onResponse(Call<OWResponse> call, Response<OWResponse> response) {
+
+                                            System.out.println("OW - City :" + response.body().getCity().getName());
+                                            System.out.println("OW - Temp :" + response.body().getList().get(0).getMain().getTemp());
+
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<OWResponse> call, Throwable t) {
+
+                                        }
+                                    });
+                                }
+                            }else{
+                                Log.i(E_LOG_TAG, "Herhangi bir entity bulunamadı!");}
+                        }
+
+
+                        @Override
+                        public void onFailure(Call<WitResponse> call, Throwable t) {
+
+                        }
+                    });
                 }break;
             }
         }

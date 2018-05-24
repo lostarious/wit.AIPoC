@@ -7,14 +7,22 @@ import com.google.gson.annotations.SerializedName;
 @Generated("com.robohorse.robopojogenerator")
 public class Entities{
 
+	@SerializedName("hava_durumu")
+	private List<HavaDurumuItem> havaDurumu;
+
 	@SerializedName("location")
 	private List<LocationItem> location;
 
 	@SerializedName("time")
 	private List<TimeItem> time;
 
-	@SerializedName("intent")
-	private List<IntentItem> intent;
+	public void setHavaDurumu(List<HavaDurumuItem> havaDurumu){
+		this.havaDurumu = havaDurumu;
+	}
+
+	public List<HavaDurumuItem> getHavaDurumu(){
+		return havaDurumu;
+	}
 
 	public void setLocation(List<LocationItem> location){
 		this.location = location;
@@ -30,13 +38,5 @@ public class Entities{
 
 	public List<TimeItem> getTime(){
 		return time;
-	}
-
-	public void setIntent(List<IntentItem> intent){
-		this.intent = intent;
-	}
-
-	public List<IntentItem> getIntent(){
-		return intent;
 	}
 }
