@@ -4,11 +4,13 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "mert.android.com.witaipoc"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -23,6 +25,9 @@ android {
     //more than one file was found with OS independent path erroru için
     packagingOptions{
         exclude 'META-INF/INDEX.LIST'
+    }
+    dataBinding{
+        enabled =true
     }
 }
 

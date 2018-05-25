@@ -13,8 +13,8 @@ import retrofit2.http.Query;
 public interface OpenWeatherAPI {
     @GET("?mode=json&lang=tr&units=metric")
     Call<OWResponse> request5DayForecast(
-    @Query("q") String City,
-    @Query("APPID") String API_KEY
+            @Query("q") String City,
+            @Query("APPID") String API_KEY
     );
 
 

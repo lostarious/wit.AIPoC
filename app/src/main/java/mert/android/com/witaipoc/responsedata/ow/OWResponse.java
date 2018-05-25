@@ -1,64 +1,66 @@
 package mert.android.com.witaipoc.responsedata.ow;
 
-import java.util.List;
-import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
+import javax.annotation.Generated;
+
 @Generated("com.robohorse.robopojogenerator")
-public class OWResponse{
+public class OWResponse {
 
-	@SerializedName("city")
-	private City city;
+    @SerializedName("city")
+    private City city;
 
-	@SerializedName("cnt")
-	private int cnt;
+    @SerializedName("cnt")
+    private int cnt;
 
-	@SerializedName("cod")
-	private String cod;
+    @SerializedName("cod")
+    private String cod;
 
-	@SerializedName("message")
-	private double message;
+    @SerializedName("message")
+    private double message;
 
-	@SerializedName("list")
-	private List<ListItem> list;
+    @SerializedName("list")
+    private List<ListItem> list;
 
-	public void setCity(City city){
-		this.city = city;
-	}
+    public City getCity() {
+        return city;
+    }
 
-	public City getCity(){
-		return city;
-	}
+    public void setCity(City city) {
+        this.city = city;
+    }
 
-	public void setCnt(int cnt){
-		this.cnt = cnt;
-	}
+    public int getCnt() {
+        return cnt;
+    }
 
-	public int getCnt(){
-		return cnt;
-	}
+    public void setCnt(int cnt) {
+        this.cnt = cnt;
+    }
 
-	public void setCod(String cod){
-		this.cod = cod;
-	}
+    public String getCod() {
+        return cod;
+    }
 
-	public String getCod(){
-		return cod;
-	}
+    public void setCod(String cod) {
+        this.cod = cod;
+    }
 
-	public void setMessage(double message){
-		this.message = message;
-	}
+    public double getMessage() {
+        return message;
+    }
 
-	public double getMessage(){
-		return message;
-	}
+    public void setMessage(double message) {
+        this.message = message;
+    }
 
-	public void setList(List<ListItem> list){
-		this.list = list;
-	}
+    public List<ListItem> getList() {
+        return list;
+    }
 
-	public List<ListItem> getList(){
-		return list;
-	}
+    public void setList(List<ListItem> list) {
+        this.list = list;
+    }
 }

@@ -1,63 +1,64 @@
 package mert.android.com.witaipoc.responsedata.ow;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
+import javax.annotation.Generated;
+
 @Generated("com.robohorse.robopojogenerator")
-public class City{
+public class City {
 
-	@SerializedName("country")
-	private String country;
+    @SerializedName("country")
+    private String country;
 
-	@SerializedName("coord")
-	private Coord coord;
+    @SerializedName("coord")
+    private Coord coord;
 
-	@SerializedName("name")
-	private String name;
+    @SerializedName("name")
+    private String name;
 
-	@SerializedName("id")
-	private int id;
+    @SerializedName("id")
+    private int id;
 
-	@SerializedName("population")
-	private int population;
+    @SerializedName("population")
+    private int population;
 
-	public void setCountry(String country){
-		this.country = country;
-	}
+    public String getCountry() {
+        return country;
+    }
 
-	public String getCountry(){
-		return country;
-	}
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
-	public void setCoord(Coord coord){
-		this.coord = coord;
-	}
+    public Coord getCoord() {
+        return coord;
+    }
 
-	public Coord getCoord(){
-		return coord;
-	}
+    public void setCoord(Coord coord) {
+        this.coord = coord;
+    }
 
-	public void setName(String name){
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getName(){
-		return name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setId(int id){
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public int getId(){
-		return id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setPopulation(int population){
-		this.population = population;
-	}
+    public int getPopulation() {
+        return population;
+    }
 
-	public int getPopulation(){
-		return population;
-	}
+    public void setPopulation(int population) {
+        this.population = population;
+    }
 }

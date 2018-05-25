@@ -1,41 +1,42 @@
 package mert.android.com.witaipoc.responsedata.wit;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
+import javax.annotation.Generated;
+
 @Generated("com.robohorse.robopojogenerator")
-public class WitResponse{
+public class WitResponse {
 
-	@SerializedName("entities")
-	private Entities entities;
+    @SerializedName("entities")
+    private Entities entities;
 
-	@SerializedName("_text")
-	private String text;
+    @SerializedName("_text")
+    private String text;
 
-	@SerializedName("msg_id")
-	private String msgId;
+    @SerializedName("msg_id")
+    private String msgId;
 
-	public void setEntities(Entities entities){
-		this.entities = entities;
-	}
+    public Entities getEntities() {
+        return entities;
+    }
 
-	public Entities getEntities(){
-		return entities;
-	}
+    public void setEntities(Entities entities) {
+        this.entities = entities;
+    }
 
-	public void setText(String text){
-		this.text = text;
-	}
+    public String getText() {
+        return text;
+    }
 
-	public String getText(){
-		return text;
-	}
+    public void setText(String text) {
+        this.text = text;
+    }
 
-	public void setMsgId(String msgId){
-		this.msgId = msgId;
-	}
+    public String getMsgId() {
+        return msgId;
+    }
 
-	public String getMsgId(){
-		return msgId;
-	}
+    public void setMsgId(String msgId) {
+        this.msgId = msgId;
+    }
 }

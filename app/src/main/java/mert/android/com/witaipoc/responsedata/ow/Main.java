@@ -1,96 +1,95 @@
 package mert.android.com.witaipoc.responsedata.ow;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
+import javax.annotation.Generated;
+
 @Generated("com.robohorse.robopojogenerator")
-public class Main{
+public class Main {
 
-	@SerializedName("temp")
-	private double temp;
+    @SerializedName("temp")
+    private double temp;
+    @SerializedName("temp_min")
+    private double tempMin;
+    @SerializedName("grnd_level")
+    private double grndLevel;
+    @SerializedName("temp_kf")
+    private double tempKf;
+    @SerializedName("humidity")
+    private int humidity;
+    @SerializedName("pressure")
+    private double pressure;
+    @SerializedName("sea_level")
+    private double seaLevel;
+    @SerializedName("temp_max")
+    private double tempMax;
 
-	@SerializedName("temp_min")
-	private double tempMin;
+    @Override
+    public String toString() {
+        return "" + temp;
+    }
 
-	@SerializedName("grnd_level")
-	private double grndLevel;
+    public double getTemp() {
+        return temp;
+    }
 
-	@SerializedName("temp_kf")
-	private double tempKf;
+    public void setTemp(double temp) {
+        this.temp = temp;
+    }
 
-	@SerializedName("humidity")
-	private int humidity;
+    public double getTempMin() {
+        return tempMin;
+    }
 
-	@SerializedName("pressure")
-	private double pressure;
+    public void setTempMin(double tempMin) {
+        this.tempMin = tempMin;
+    }
 
-	@SerializedName("sea_level")
-	private double seaLevel;
+    public double getGrndLevel() {
+        return grndLevel;
+    }
 
-	@SerializedName("temp_max")
-	private double tempMax;
+    public void setGrndLevel(double grndLevel) {
+        this.grndLevel = grndLevel;
+    }
 
-	public void setTemp(double temp){
-		this.temp = temp;
-	}
+    public double getTempKf() {
+        return tempKf;
+    }
 
-	public double getTemp(){
-		return temp;
-	}
+    public void setTempKf(double tempKf) {
+        this.tempKf = tempKf;
+    }
 
-	public void setTempMin(double tempMin){
-		this.tempMin = tempMin;
-	}
+    public int getHumidity() {
+        return humidity;
+    }
 
-	public double getTempMin(){
-		return tempMin;
-	}
+    public void setHumidity(int humidity) {
+        this.humidity = humidity;
+    }
 
-	public void setGrndLevel(double grndLevel){
-		this.grndLevel = grndLevel;
-	}
+    public double getPressure() {
+        return pressure;
+    }
 
-	public double getGrndLevel(){
-		return grndLevel;
-	}
+    public void setPressure(double pressure) {
+        this.pressure = pressure;
+    }
 
-	public void setTempKf(double tempKf){
-		this.tempKf = tempKf;
-	}
+    public double getSeaLevel() {
+        return seaLevel;
+    }
 
-	public double getTempKf(){
-		return tempKf;
-	}
+    public void setSeaLevel(double seaLevel) {
+        this.seaLevel = seaLevel;
+    }
 
-	public void setHumidity(int humidity){
-		this.humidity = humidity;
-	}
+    public double getTempMax() {
+        return tempMax;
+    }
 
-	public int getHumidity(){
-		return humidity;
-	}
-
-	public void setPressure(double pressure){
-		this.pressure = pressure;
-	}
-
-	public double getPressure(){
-		return pressure;
-	}
-
-	public void setSeaLevel(double seaLevel){
-		this.seaLevel = seaLevel;
-	}
-
-	public double getSeaLevel(){
-		return seaLevel;
-	}
-
-	public void setTempMax(double tempMax){
-		this.tempMax = tempMax;
-	}
-
-	public double getTempMax(){
-		return tempMax;
-	}
+    public void setTempMax(double tempMax) {
+        this.tempMax = tempMax;
+    }
 }

@@ -1,30 +1,31 @@
 package mert.android.com.witaipoc.responsedata.ow;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
+import javax.annotation.Generated;
+
 @Generated("com.robohorse.robopojogenerator")
-public class Wind{
+public class Wind {
 
-	@SerializedName("deg")
-	private double deg;
+    @SerializedName("deg")
+    private double deg;
 
-	@SerializedName("speed")
-	private double speed;
+    @SerializedName("speed")
+    private double speed;
 
-	public void setDeg(double deg){
-		this.deg = deg;
-	}
+    public double getDeg() {
+        return deg;
+    }
 
-	public double getDeg(){
-		return deg;
-	}
+    public void setDeg(double deg) {
+        this.deg = deg;
+    }
 
-	public void setSpeed(double speed){
-		this.speed = speed;
-	}
+    public double getSpeed() {
+        return speed;
+    }
 
-	public double getSpeed(){
-		return speed;
-	}
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
 }

@@ -1,26 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context="mert.android.com.witaipoc.home.MainActivity">
+    <data>
+        <variable
+            name="entities"
+            type="mert.android.com.witaipoc.responsedata.wit.Entities"/>
+        <variable
+            name="hava"
+            type="mert.android.com.witaipoc.responsedata.ow.OWResponse"/>
+    </data>
+<android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mert.android.com.witaipoc.home.MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    >
 
     <Button
         android:id="@+id/bt_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RECORD"
-        tools:layout_editor_absoluteX="107dp"
-        tools:layout_editor_absoluteY="310dp" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+
+        android:text="KAYIT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_display_intent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Intent:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TextAppearance.AppCompat.Title"/>
+
+    <TextView
+        android:id="@+id/tv_display_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Konum:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_display_intent"
+        style="@style/TextAppearance.AppCompat.Title"/>
+
+    <TextView
+        android:id="@+id/tv_display_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Zaman:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_display_location"
+        style="@style/TextAppearance.AppCompat.Title"/>
+
+    <TextView
+        android:id="@+id/tv_intent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text='@{entities.havaDurumu!=null ? entities.havaDurumu.get(0).getValue():"Intent bulunamadı!"}'
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_display_intent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_display_intent"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        />
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text='@{entities.location!=null?entities.location.get(0).getValue():"Konum bilgisi bulunamadı!"}'
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_display_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_display_location"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text='@{entities.time!=null?entities.time.get(0).getValue():"Zaman bilgisi bulunamadı!"}'
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_display_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_display_time"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        />
+
+    <TextView
+        android:id="@+id/tv_display_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:text="Sıcaklık:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_display_sehir"
+        style="@style/Base.TextAppearance.AppCompat.Title"/>
+
+    <TextView
+        android:id="@+id/tv_display_sehir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:text="Şehir"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_hava_durumu"
+        style="@style/Base.TextAppearance.AppCompat.Title"/>
+
+    <TextView
+        android:id="@+id/tv_title_hava_durumu"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Hava Durumu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_display_time" />
+
+    <TextView
+        android:id="@+id/tv_sehir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text='@{hava!=null?hava.city.name:"Sehir bilgisi bulunamadı!"}'
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_display_sehir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_display_sehir"
+        style="@style/Base.TextAppearance.AppCompat.Body2"/>
+
+    <TextView
+        android:id="@+id/tv_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text='@{hava!=null?hava.list.get(0).getMain.toString():"-"}'
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_display_temp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_display_temp"
+        style="@style/Base.TextAppearance.AppCompat.Body2"/>
 
 </android.support.constraint.ConstraintLayout>
+</layout>

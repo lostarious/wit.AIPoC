@@ -16,7 +16,7 @@ public interface WitAPI {
     @GET("message")
     Call<WitResponse> makequery(
             @Header("Authorization") String auth,
-            @Query("v") String value ,
+            @Query("v") String value,
             @Query("q") String queryText
-        );
+    );
 }
